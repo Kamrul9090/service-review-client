@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo/logo.png'
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { ImHipster } from "react-icons/im";
+
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logOut()
+            .then()
+            .then(e => console.log(e))
+    }
+
     return (
         <div className='shadow-lg'>
             <div className="navbar bg-base-100">
@@ -20,12 +31,32 @@ const Header = () => {
                     <img className='w-20 h-20' src={logo} alt='' />
                 </div>
                 <div className="navbar-end">
-                    <button className="btn btn-ghost">
-                        <Link to='/login'>Login</Link>
-                    </button>
-                    <button className="btn btn-ghost">
-                        <Link to="register">Sign Up</Link>
-                    </button>
+                    {
+                        user?.uid ?
+                            <>
+                                <button onClick={handleLogout} className="btn btn-ghost">
+                                    <Link to='/login'>log out</Link>
+                                </button>
+                                {user?.photoURL ?
+                                    <img className='w-16 rounded-full ml-2' src={user?.photoURL} alt="" />
+                                    :
+                                    <ImHipster className='w-16 h-10'></ImHipster>
+                                }
+                                <button className="btn btn-ghost">
+                                    <Link to="register">Sign Up</Link>
+                                </button>
+                            </>
+                            :
+                            <>
+                                <button className="btn btn-ghost">
+                                    <Link to='/login'>Login</Link>
+                                </button>
+                                <button className="btn btn-ghost">
+                                    <Link to="register">Sign Up</Link>
+                                </button>
+                            </>
+                    }
+
                 </div>
             </div>
         </div>
