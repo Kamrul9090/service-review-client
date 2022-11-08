@@ -3,6 +3,7 @@ import img from '../../assets/images/SignUpPage.jpg'
 import { FcUnlock } from "react-icons/fc";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 const SignUp = () => {
     const { createUser } = useContext(AuthContext);
 
@@ -29,6 +30,7 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                toast.success('Sign Up success')
             })
             .catch(e => {
                 console.log(e.code);
