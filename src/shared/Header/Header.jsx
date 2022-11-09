@@ -28,6 +28,7 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="navbar-center">
+                    <h1 className='text-xl font-bold font-serif uppercase'>Hot Foodies</h1>
                     <img className='w-20 h-20' src={logo} alt='' />
                 </div>
                 <div className="navbar-end">
