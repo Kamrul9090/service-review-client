@@ -4,12 +4,22 @@ import foodies from '../../assets/banner/foodies.json';
 import eat from '../../assets/banner/eat.json';
 import Services from './Services/Services';
 import { Link } from 'react-router-dom';
+import ServiceType from './ServiceType/ServiceType';
 const Home = () => {
     const [services, setServices] = useState([])
+    const [serviceType, setServiceType] = useState([])
+
     useEffect(() => {
         fetch(`http://localhost:5000/services`)
             .then(res => res.json())
             .then(data => setServices(data))
+    }, [])
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/serviceType`)
+            .then(res => res.json())
+            .then(data => setServiceType(data))
     }, [])
 
     return (
@@ -27,6 +37,12 @@ const Home = () => {
                 }
             </div>
             <button className="btn btn-lg btn-wide bg-purple-900 mt-10"><Link to='/servicesAll'>See All</Link></button>
+
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 my-20'>
+                {
+                    serviceType.map(serType => <ServiceType key={serType._id} serType={serType}></ServiceType>)
+                }
+            </div>
         </div>
     );
 };

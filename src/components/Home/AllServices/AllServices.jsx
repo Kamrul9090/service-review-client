@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const AllServices = () => {
     const [allServices, setAllServices] = useState([])
@@ -9,13 +11,17 @@ const AllServices = () => {
             .then(data => setAllServices(data))
 
     }, [])
-    console.log(allServices);
+
     return (
         <div className='grid grid-cols-1 lg:grid-cols-3'>
             {
                 allServices.map(service => <div className="card w-full h-full bg-base-100 shadow-xl">
                     <figure className="px-10 pt-10">
-                        <img src={service.picture} alt="Shoes" className="w-full h-80 rounded-xl" />
+                        <PhotoProvider>
+                            <PhotoView src={service.picture}>
+                                <img src={service.picture} alt="Shoes" className="w-full h-80 rounded-xl" />
+                            </PhotoView>
+                        </PhotoProvider>
                     </figure>
                     <div className="card-body items-center text-center">
                         <h2 className="card-title">{service.name}</h2>
