@@ -7,6 +7,7 @@ import Login from "../components/Login/Login";
 import SignUp from "../components/Signup/SignUp";
 import ErrorPage from "../Error/ErrorPage";
 import Main from "../layout/Main";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -37,7 +38,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/review',
-                element: <AddReview></AddReview>
+                element: <PrivateRoute><AddReview></AddReview></PrivateRoute>
             }
         ]
     },
