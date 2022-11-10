@@ -4,6 +4,7 @@ import AllServices from "../components/Home/AllServices/AllServices";
 import Home from "../components/Home/Home";
 import ServiceDetails from "../components/Home/ServiceDetails/ServiceDetails";
 import Login from "../components/Login/Login";
+import MyReviews from "../components/MyReviews/MyReviews";
 import SignUp from "../components/Signup/SignUp";
 import ErrorPage from "../Error/ErrorPage";
 import Main from "../layout/Main";
@@ -45,6 +46,11 @@ export const router = createBrowserRouter([
     {
         path: '/register',
         element: <SignUp></SignUp>
+    },
+    {
+        path: '/reviews',
+        element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute>,
+        // loader: () => fetch(`http://localhost:5000/reviewAdd`)
     },
 ])
 

@@ -26,25 +26,28 @@ const AuthProvider = ({ children }) => {
     // Sign in with google
 
     const signInWithGoogle = () => {
+        setLoader(true)
         return signInWithPopup(auth, googleProvider);
     }
 
     // Log out 
     const logOut = () => {
+        // setLoader(true)
         return signOut(auth);
     }
 
     // Update user profile
 
     const updateUser = (profile) => {
+        setLoader(true)
         return updateProfile(auth.currentUser, profile)
     }
 
     // users 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
             setLoader(false);
+            setUser(currentUser);
         })
 
         return () => {

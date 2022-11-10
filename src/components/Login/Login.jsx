@@ -3,11 +3,15 @@ import { FcGoogle } from 'react-icons/fc';
 import LoginImg from '../../assets/logo/login.png'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { login, user, signInWithGoogle } = useContext(AuthContext)
-    console.log(user);
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location);
+    const form = location.state?.form?.pathname || '/';
+
     const [userInfo, setUserInfo] = useState({
         email: '',
         password: '',
@@ -22,7 +26,7 @@ const Login = () => {
     // Handle Login Form
     const handleLoginForm = e => {
         e.preventDefault();
-        const form = e.target;
+        const targetForm = e.target;
 
         // Login with email and password
         login(userInfo.email, userInfo.password)
@@ -30,8 +34,9 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('Sign Up successfully');
-                form.email.value = '';
-                form.password.value = '';
+                navigate(form, { replace: true })
+                targetForm.email.value = '';
+                targetForm.password.value = '';
             })
             .catch(e => {
                 if (e.message) {
@@ -45,6 +50,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(form, { replace: true })
                 toast.success('Sign Up successfully');
             })
             .catch(e => {

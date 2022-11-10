@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
-import { Audio } from 'react-loader-spinner'
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
+import { Audio } from 'react-loader-spinner';
+
 
 const PrivateRoute = ({ children }) => {
     const location = useLocation();
-    const navigate = useNavigate();
     const { user, loader } = useContext(AuthContext);
     if (loader) {
         return <Audio
@@ -20,9 +19,8 @@ const PrivateRoute = ({ children }) => {
         />
     }
     if (user) {
-        <div>
-            {children}
-        </div>
+        return children;
+
     } else {
         return <Navigate to='/login' state={{ from: location }} replace></Navigate>
     }
