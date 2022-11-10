@@ -36,8 +36,9 @@ const Home = () => {
                     services.map(service => <Services key={service._id} service={service}></Services>)
                 }
             </div>
-            <button className="btn btn-lg btn-wide bg-purple-900 mt-10"><Link to='/servicesAll'>See All</Link></button>
-
+            <Link to='/servicesAll'>
+                <button className="btn btn-lg btn-wide bg-purple-900 mt-10">See All</button>
+            </Link>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 my-20'>
                 {
                     serviceType.map(serType => <ServiceType key={serType._id} serType={serType}></ServiceType>)

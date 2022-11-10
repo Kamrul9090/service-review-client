@@ -38,11 +38,13 @@ const Header = () => {
                                 <button onClick={handleLogout} className="btn btn-ghost">
                                     <Link to='/login'>log out</Link>
                                 </button>
-                                {user?.photoURL ?
-                                    <img className='w-16 rounded-full ml-2' src={user?.photoURL} alt="" />
-                                    :
-                                    <ImHipster className='w-16 h-10'></ImHipster>
-                                }
+                                <span>
+                                    {user?.photoURL ?
+                                        <img className='w-16 rounded-full ml-2' src={user?.photoURL} alt="" />
+                                        :
+                                        <ImHipster className='w-16 h-10'></ImHipster>
+                                    }
+                                </span>
                                 <button className="btn btn-ghost">
                                     <Link to="register">Sign Up</Link>
                                 </button>

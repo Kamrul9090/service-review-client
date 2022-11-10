@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
     const { login, user, signInWithGoogle } = useContext(AuthContext)
-
+    console.log(user);
     const [userInfo, setUserInfo] = useState({
         email: '',
         password: '',
@@ -44,6 +44,7 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 const user = result.user;
+                console.log(user);
                 toast.success('Sign Up successfully');
             })
             .catch(e => {

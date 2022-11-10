@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
-import { handler } from 'daisyui';
 
 const Services = ({ service }) => {
 
@@ -23,7 +22,9 @@ const Services = ({ service }) => {
                     <p>{about.slice(0, 100) + '...'}</p>
                     <p className='font-bold text-primary'>{price}</p>
                     <div className="card-actions">
-                        <button className="btn btn-primary"><Link to={`/services/${_id}`}>Details</Link></button>
+                        <Link to={`/services/${_id}`}>
+                            <button className="btn btn-primary">Details</button>
+                        </Link>
                     </div>
                 </div>
             </div>

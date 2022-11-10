@@ -1,10 +1,21 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
+import ShowReview from '../../ShowReview/ShowReview';
 
 const ServiceDetails = () => {
-
     const foodDetails = useLoaderData()
+    const [userFeedback, setUserFeedback] = useState([])
     const { about, name, picture, price, rating } = foodDetails;
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/reviewAdd`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setUserFeedback(data)
+            })
+    }, [])
+
 
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 my-20 m-10'>
@@ -18,11 +29,18 @@ const ServiceDetails = () => {
                         <p>Rating: <span className='text-purple-700'>{rating}</span></p>
                     </div>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Listen</button>
+                        <Link to='/review'>
+                            <button type='submit' className="btn bg-purple-900">Add Review</button>
+                        </Link>
                     </div>
                 </div>
             </div>
-            <div>content</div>
+            <div>
+                <h1 className='text-4xl font-bold text-center'>Reviews</h1>
+                {
+                    userFeedback.map(userReview => <ShowReview userReview={userReview} key={userReview._id}></ShowReview>)
+                }
+            </div>
         </div>
     );
 };
