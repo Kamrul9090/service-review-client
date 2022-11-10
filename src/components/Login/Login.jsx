@@ -4,8 +4,10 @@ import LoginImg from '../../assets/logo/login.png'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import UseTitle from '../UseTitle/UseTitle';
 
 const Login = () => {
+    UseTitle('Login')
     const { login, user, signInWithGoogle } = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();

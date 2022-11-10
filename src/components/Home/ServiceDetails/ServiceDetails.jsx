@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import ShowReview from '../../ShowReview/ShowReview';
+import UseTitle from '../../UseTitle/UseTitle';
 
 const ServiceDetails = () => {
+    UseTitle('Details')
     const foodDetails = useLoaderData()
     const [userFeedback, setUserFeedback] = useState([])
     const { about, name, picture, price, rating } = foodDetails;

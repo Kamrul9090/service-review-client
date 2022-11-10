@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import UseTitle from '../../UseTitle/UseTitle';
 
 const AllServices = () => {
+    UseTitle('All Service')
     const [allServices, setAllServices] = useState([])
     useEffect(() => {
         fetch(`http://localhost:5000/allServices`)
             .then(res => res.json())
             .then(data => setAllServices(data))
-
     }, [])
 
     return (

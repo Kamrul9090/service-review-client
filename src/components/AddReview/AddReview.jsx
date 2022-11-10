@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const AddReview = () => {
@@ -13,7 +12,6 @@ const AddReview = () => {
         const rating = form.rating.value;
         const feedback = form.feedback.value;
         const userReview = { rating, feedback }
-        console.log(userReview);
         setUserInfo(userReview)
         fetch(`http://localhost:5000/reviewAdd`, {
             method: 'POST',
@@ -24,9 +22,10 @@ const AddReview = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged) {
-                    console.log(data);
-                }
+                console.log(data);
+                form.rating.value = '';
+                form.feedback.value = '';
+                toast.success('Added your review')
             });
     }
 

@@ -4,7 +4,9 @@ import { FcLock } from "react-icons/fc";
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import UseTitle from '../UseTitle/UseTitle';
 const SignUp = () => {
+    UseTitle('register')
     const { createUser, user, updateUser } = useContext(AuthContext);
     const [updateName, setUpdateName] = useState(user);
     console.log(updateName);

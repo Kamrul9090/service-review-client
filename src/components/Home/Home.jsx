@@ -5,9 +5,13 @@ import eat from '../../assets/banner/eat.json';
 import Services from './Services/Services';
 import { Link } from 'react-router-dom';
 import ServiceType from './ServiceType/ServiceType';
+import AddServiceCard from '../AddService/AddServiceCard';
+import UseTitle from '../UseTitle/UseTitle';
 const Home = () => {
+    UseTitle('Home')
     const [services, setServices] = useState([])
     const [serviceType, setServiceType] = useState([])
+    const [serviceInfo, setServiceInfo] = useState([]);
 
     useEffect(() => {
         fetch(`http://localhost:5000/services`)
@@ -20,6 +24,13 @@ const Home = () => {
         fetch(`http://localhost:5000/serviceType`)
             .then(res => res.json())
             .then(data => setServiceType(data))
+    }, [])
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/addService`)
+            .then(res => res.json())
+            .then(data => setServiceInfo(data));
     }, [])
 
     return (
@@ -39,6 +50,13 @@ const Home = () => {
             <Link to='/servicesAll'>
                 <button className="btn btn-lg btn-wide bg-purple-900 mt-10">See All</button>
             </Link>
+
+            <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+                {
+                    serviceInfo.map(newService => <AddServiceCard newService={newService}></AddServiceCard>)
+                }
+
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 my-20'>
                 {
                     serviceType.map(serType => <ServiceType key={serType._id} serType={serType}></ServiceType>)
