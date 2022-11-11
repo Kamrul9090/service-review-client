@@ -13,7 +13,7 @@ const AddService = () => {
         const image = form.image.value;
         const newServiceInfo = { name, price, image }
 
-        fetch(`http://localhost:5000/addService`, {
+        fetch(`https://service-review-server-pi.vercel.app/addService`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

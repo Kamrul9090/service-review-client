@@ -15,21 +15,21 @@ const Home = () => {
     const [serviceInfo, setServiceInfo] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/services`)
+        fetch(`https://service-review-server-pi.vercel.app/services`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/serviceType`)
+        fetch(`https://service-review-server-pi.vercel.app/serviceType`)
             .then(res => res.json())
             .then(data => setServiceType(data))
     }, [])
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/addService`)
+        fetch(`https://service-review-server-pi.vercel.app/addService`)
             .then(res => res.json())
             .then(data => setServiceInfo(data));
     }, [])

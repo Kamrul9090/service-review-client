@@ -13,7 +13,7 @@ const AddReview = () => {
         const feedback = form.feedback.value;
         const userReview = { rating, feedback }
         setUserInfo(userReview)
-        fetch(`http://localhost:5000/reviewAdd`, {
+        fetch(`https://service-review-server-pi.vercel.app/reviewAdd`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

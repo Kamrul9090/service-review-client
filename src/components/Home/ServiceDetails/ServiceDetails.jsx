@@ -14,7 +14,7 @@ const ServiceDetails = () => {
     const { about, name, picture, price, rating } = foodDetails;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviewAdd`)
+        fetch(`https://service-review-server-pi.vercel.app/reviewAdd`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
