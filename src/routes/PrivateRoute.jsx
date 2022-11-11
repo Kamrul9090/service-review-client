@@ -5,8 +5,8 @@ import { Audio } from 'react-loader-spinner';
 
 
 const PrivateRoute = ({ children }) => {
-    const location = useLocation();
     const { user, loader } = useContext(AuthContext);
+    const location = useLocation();
     if (loader) {
         return <Audio
             height="100"

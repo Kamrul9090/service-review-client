@@ -52,6 +52,7 @@ const Footer = () => {
                     <img className='w-20 mr-2' src={img2} alt="" srcset="" />
                     <img className='w-20' src={img3} alt="" srcset="" />
                 </div>
+                <small>&copy; All Copy Rights 2020 reserved.</small>
             </div>
         </footer>
 

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { ImHipster } from 'react-icons/im';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const ReviewTable = ({ review, handleDeleteReview }) => {
@@ -17,7 +18,14 @@ const ReviewTable = ({ review, handleDeleteReview }) => {
                     <div className="flex items-center space-x-3">
                         <div className="avatar">
                             <div className="mask mask-squircle w-12 h-12">
-                                <img src={user?.photoURL} alt="Avatar Tailwind CSS Component" />
+                                {
+                                    user?.photoURL ?
+                                        <img src={user?.photoURL} alt="Avatar Tailwind CSS Component" />
+                                        :
+                                        <ImHipster className='w-14 h-8'></ImHipster>
+
+                                }
+
                             </div>
                         </div>
                         <div>

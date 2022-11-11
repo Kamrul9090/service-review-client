@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import ServiceType from './ServiceType/ServiceType';
 import AddServiceCard from '../AddService/AddServiceCard';
 import UseTitle from '../UseTitle/UseTitle';
+import { ColorRing } from 'react-loader-spinner';
 const Home = () => {
     UseTitle('Home')
     const [services, setServices] = useState([])
@@ -43,8 +44,10 @@ const Home = () => {
                 <p className='text-center font-bold font-serif'>We are trying to take our best service to customers. That is why to making most <br /> popular recipe to serve. Check the details and chose the recipe that you want.</p>
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+
                 {
                     services.map(service => <Services key={service._id} service={service}></Services>)
+
                 }
             </div>
             <Link to='/servicesAll'>
@@ -57,7 +60,7 @@ const Home = () => {
                 }
 
             </div>
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 my-20'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 my-20 container mx-auto'>
                 {
                     serviceType.map(serType => <ServiceType key={serType._id} serType={serType}></ServiceType>)
                 }

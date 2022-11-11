@@ -5,14 +5,16 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import UseTitle from '../UseTitle/UseTitle';
+import { ColorRing } from 'react-loader-spinner';
 
 const Login = () => {
+
     UseTitle('Login')
-    const { login, user, signInWithGoogle } = useContext(AuthContext)
+    const { login, user, loader, signInWithGoogle } = useContext(AuthContext);
+
     const navigate = useNavigate();
     const location = useLocation();
-    console.log(location);
-    const form = location.state?.form?.pathname || '/';
+    const form = location?.state?.form?.pathname || '/';
 
     const [userInfo, setUserInfo] = useState({
         email: '',
@@ -25,6 +27,17 @@ const Login = () => {
         submitErrors: ''
     })
 
+    if (loader) {
+        return <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+        />
+    }
     // Handle Login Form
     const handleLoginForm = e => {
         e.preventDefault();
@@ -34,11 +47,25 @@ const Login = () => {
         login(userInfo.email, userInfo.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                toast.success('Sign Up successfully');
-                navigate(form, { replace: true })
-                targetForm.email.value = '';
-                targetForm.password.value = '';
+                const currentUser = {
+                    email: user.email
+                }
+
+                fetch(`http://localhost:5000/jwt`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('jwt-token', data.token)
+                        toast.success('Sign Up successfully');
+                        targetForm.email.value = '';
+                        targetForm.password.value = '';
+                        navigate(form, { replace: true })
+                    })
             })
             .catch(e => {
                 if (e.message) {
@@ -51,7 +78,6 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 const user = result.user;
-                console.log(user);
                 navigate(form, { replace: true })
                 toast.success('Sign Up successfully');
             })

@@ -9,7 +9,11 @@ const MyReviews = () => {
     const [allReviews, setReviews] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviewAdd`)
+        fetch(`http://localhost:5000/reviewAdd`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt-token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
@@ -24,8 +28,8 @@ const MyReviews = () => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    const remaningReview = allReviews.filter(singleReview => singleReview._id !== id);
-                    setReviews(remaningReview);
+                    const remainingReview = allReviews.filter(singleReview => singleReview._id !== id);
+                    setReviews(remainingReview);
                     toast.success('Successfully delete')
                 })
         }

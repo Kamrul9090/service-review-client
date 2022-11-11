@@ -30,33 +30,31 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="navbar-center">
-                    <h1 className='text-xl font-bold font-serif uppercase'>Hot Foodies</h1>
+                    <h1 className='text-sm lg:text-xl font-bold font-serif uppercase'><Link to='/'>Hot Foodies</Link></h1>
                     <img className='w-20 h-20' src={logo} alt='' />
                 </div>
                 <div className="navbar-end">
                     {
                         user?.uid ?
                             <>
-                                <button onClick={handleLogout} className="btn btn-ghost">
+                                <button onClick={handleLogout} className="btn btn-sm rounded-md btn-ghost">
                                     <Link to='/login'>log out</Link>
                                 </button>
                                 <span>
                                     {user?.photoURL ?
-                                        <img className='w-16 rounded-full ml-2' src={user?.photoURL} alt="" />
+                                        <img className='w-10 rounded-full ml-2' src={user?.photoURL} alt="" />
                                         :
-                                        <ImHipster className='w-16 h-10'></ImHipster>
+                                        <ImHipster className='w-10 h-8'></ImHipster>
                                     }
                                 </span>
-                                <button className="btn btn-ghost">
-                                    <Link to="register">Sign Up</Link>
-                                </button>
+
                             </>
                             :
                             <>
-                                <button className="btn btn-ghost">
+                                <button className="btn btn-sm rounded-md btn-ghost">
                                     <Link to='/login'>Login</Link>
                                 </button>
-                                <button className="btn btn-ghost">
+                                <button className="btn btn-sm rounded-md btn-ghost">
                                     <Link to="register">Sign Up</Link>
                                 </button>
                             </>

@@ -16,13 +16,12 @@ const AddReview = () => {
         fetch(`http://localhost:5000/reviewAdd`, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
             },
             body: JSON.stringify(userReview)
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 form.rating.value = '';
                 form.feedback.value = '';
                 toast.success('Added your review')
